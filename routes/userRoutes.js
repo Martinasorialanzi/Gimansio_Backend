@@ -2,8 +2,8 @@
 // primero desde express traigo la funcion routes e importo las funciones de nuestro controller.
 
 const router = require('express').Router();
-const { getAllusers, getUser, registerUser, loginUser, updateUser, deleteUser } = require('../controllers/user.controller');
-const {getAllproducts, getProduct, createProduct, updateProduct, deleteProduct} = require('../controllers/product.controller')
+const { getAllusers, getUser, registerUser, loginUser, updateUser, deleteUser } = require('../controllers/userController');
+
 
 // pongo primero el path y luego la funcion q quiero llamar
 router.get("/users", getAllusers);
@@ -12,3 +12,5 @@ router.post("/user/register", registerUser); //el post crea, por eso pongo post 
 router.post("/user/login", loginUser);//estoy haciendo un login, por eso post
 router.put("/user/:id", updateUser);//el put actualiza
 router.delete("/user/:id", deleteUser);
+
+module.exports = router;

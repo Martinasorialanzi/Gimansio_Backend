@@ -3,7 +3,7 @@
 const { res, req } = require("express");
 const mongoose = require("mongoose");
 // el user es un modelo que cree y exporte en user.schema
-const User = require("../models/user.Schema");
+const User = require("../models/userSchema");
 // traigo las funciones para encriptar la conraseña
 const {encryptPassword, comparePassword} = require("../utils/passwordEncripter")
 
