@@ -8,7 +8,8 @@ const User = require("../models/userSchema");
 const {encryptPassword, comparePassword} = require("../utils/passwordEncripter")
 
 const { JsonWebTokenError } = require("jsonwebtoken")
-
+const bcryptjs = require('bcryptjs')
+require('dotenv').config()
 // primero nos traemos todos los usuarios desde la base de datos
 const getAllusers = async (req, res) => {
   try {
@@ -140,8 +141,9 @@ const loginUser = async (req,res) => {
 
         // verifico q el password sea el mismo q de la base de datos (q esta encriptado), por eso uso la funcion de comparar q hice en la encrptacion
         // tengo como parametro el password q ingreso el ususario al formulario de login y el password encriptado q tengo guardado en mi base de datos
-        const verificacionPassword = comparePassword(password, user.password); //esto retorna un booleano
-        if (!verificacionPass) {
+        // const verificacionPassword = comparePassword(password, user.password); //esto retorna un booleano
+        const result = bcryptjs.compareSync(password, user.password)
+        if (!result) {
             res.status(401).json({
               statusCode: 401,
               message: "Contraseña incorrecta",

@@ -23,6 +23,13 @@ const userSchema = new mongoose.Schema({
     //     type: String,
         // required: true,
     // },
+
+    // id: {
+    //     type: Number,
+    //     unique: true,
+    //     // required: true
+
+    // },
     createdAt: {
         type: Date,
         default: Date.now
