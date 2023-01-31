@@ -8,7 +8,7 @@ const { getAllusers, getUser, registerUser, loginUser, updateUser, deleteUser } 
 // pongo primero el path y luego la funcion q quiero llamar
 router.get("/users", getAllusers);
 router.get("/users/:id", getUser);
-router.post("/user/register", registerUser); //el post crea, por eso pongo post en el registro
+router.post("/users", registerUser); //el post crea, por eso pongo post en el registro
 router.post("/user/login", loginUser);//estoy haciendo un login, por eso post
 router.put("/user/:id", updateUser);//el put actualiza
 router.delete("/user/:id", deleteUser);

@@ -1,32 +1,32 @@
 const mongoose = require ("mongoose")
 
 // creo un modelo que va a estar relacionado con un formulario como el de registro y login
-const userSchema = new moongose.Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        required: true
     },
     lastname: {
         type: String,
-        required: true,
+        required: true
     },
     email: {
         type: String,
         required: true,
-        unique: true,
+        unique: true
     },
     password: {
         type: String,
-        required: true,
+        required: true
     },
-    role: {
-        type: String,
-        required: true,
-    },
+    // role: {
+    //     type: String,
+    //     required: true,
+    // },
     createdAt: {
         type: Date,
-        default: Date.now,
-    },
+        default: Date.now
+    }
 })
 
 const User= mongoose.model('User', userSchema)

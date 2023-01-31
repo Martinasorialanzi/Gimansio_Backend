@@ -1,11 +1,13 @@
 // aqui nos vamos a traer los usuarios de la base de datos, vamos a controlarlos, validarlos, controlar login y registro. vamos a usar los metodos htpp
 
-const { res, req } = require("express");
+
 const mongoose = require("mongoose");
 // el user es un modelo que cree y exporte en user.schema
 const User = require("../models/userSchema");
 // traigo las funciones para encriptar la conraseña
 const {encryptPassword, comparePassword} = require("../utils/passwordEncripter")
+
+const { JsonWebTokenError } = require("jsonwebtoken")
 
 // primero nos traemos todos los usuarios desde la base de datos
 const getAllusers = async (req, res) => {
@@ -79,21 +81,21 @@ const registerUser = async (req,res) => {
     // le paso todos los parametrod q tengo en el user schema
     // el req.body es el formulario de registro, le estoy pidiendo q del formulario de registro me traiga todos los datos q puse por parametro
     const {name, lastname, email, password} = req.body;
-    // todos esos datos yo se los asigno a un nuevo ususario
+    
     // const user = await User ({name, lastname, email, password})
     const secret = process.env.SECRET_KEY
     // de la pag de jwt saco los parametros q tengo q poner en el token
     // con la secret key q definimos genero el token
     // el token sirve para mantener la sesion iniciada mientras se esta en uso, dsp de un tiempo de inactividad se cierra
-    const token = jwt.sign({email:email}, secret, {expiresIn: '1h'})
+    // const token = jwt.sign({email:email}, secret, {expiresIn: '1h'})
     try{
         // pregunto si el nuevo usuario es igual a alguno q ya exista en la base de datos
-        if(user) {
-            res.status(400).json({
-                statusCode: 400,
-                message: "Usario ya existe"
-            });
-        }
+        // if(user) {
+        //     res.status(400).json({
+        //         statusCode: 400,
+        //         message: "Usario ya existe"
+        //     });
+        // }
         // si el usuario no existe lo creo
         const newUser = new User({
             // pido q me traiga todos los datos del formulario de registro
@@ -101,24 +103,24 @@ const registerUser = async (req,res) => {
             name,
             lastname,
             email,
-            password: encryptPassword(password),
+            password,
             // token para confirmar el email
-            confirmacionToken: token,
+            // confirmacionToken: token,
         });
         // ahora guardo mi nuevo usuario
         const user = await newUser.save();
-        res.status(201).json({
-            statusCode : 201,
-            message: "usuario creado",
+        res.status(201).send({
+            user
         })
     }catch (error) {
-        res.satatus(500).json({
+        res.status(500).json({
             statusCode: 500,
             message: "error al crear el usuario",
-            error: error.messsage,
+            error: error.message,
         })
     }
-}
+    
+};
 
 // hacemos el login
 
