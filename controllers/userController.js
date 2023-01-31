@@ -112,6 +112,7 @@ const registerUser = async (req,res) => {
         res.status(201).send({
             user
         })
+        
     }catch (error) {
         res.status(500).json({
             statusCode: 500,
@@ -119,7 +120,7 @@ const registerUser = async (req,res) => {
             error: error.message,
         })
     }
-    
+  
 };
 
 // hacemos el login

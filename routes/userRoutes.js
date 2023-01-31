@@ -13,4 +13,6 @@ router.post("/user/login", loginUser);//estoy haciendo un login, por eso post
 router.put("/user/:id", updateUser);//el put actualiza
 router.delete("/user/:id", deleteUser);
 
+
+
 module.exports = router;
