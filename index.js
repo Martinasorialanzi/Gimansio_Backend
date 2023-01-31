@@ -4,7 +4,7 @@ const cors= require(`cors`)
 const dotenv=require(`dotenv`)
 const jwt=require(`jsonwebtoken`);
 const {appConfig,dbConfig}=require(`./config`);
-const connectDb=require(`./db/mongodb`)
+const connectDb =require(`./db/mongodb`)
 const app=require(`./app`)
 
 dotenv.config() 
@@ -18,7 +18,7 @@ const initApp=async(appConfig,dbConfig)=>{  //inicamos la base de datos
     try {
         await connectDb(dbConfig);
         app.listen(appConfig.port,()=>{
-            console.log(`servidor corriendo en puesto ${appConfig.port}`)
+            console.log(`servidor corriendo en puerto ${appConfig.port}`)
         })
     } catch (error) {
         console.log(error);
