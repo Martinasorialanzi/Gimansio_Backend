@@ -13,7 +13,7 @@ app.use(bodyParser.json()); //y si llega a venir una respuesta en JSON la vamos 
 
 
 app.use(`/v1`, routesUsuario)  //poner nombre de la version de la api entonces el quedearia http://localhost:8080/v1/productos
-app.use(`/v2`, routesPlanes)
+app.use(`/v1`, routesPlanes)
 
 module.exports=app;
 
