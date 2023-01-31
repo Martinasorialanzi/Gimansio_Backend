@@ -20,11 +20,11 @@ const productSchema= new mongoose.Schema({
         
     },
 
-    id:{
-        type: Number,
-        required: true
+    // id:{
+    //     type: Number,
+    //     required: true
         
-    },
+    // },
 
     urlImagen:{
         type: String,
@@ -67,8 +67,10 @@ const productSchema= new mongoose.Schema({
         type: Date,
         default: Date.now
         
-    }
-
+    },
+    // id_:{
+    //     type:String,
+    // }
 })
 
 productSchema.methods.setImgUrl=function setImgUrl(filename){ //hago un metodo es decir una funcion para cargar las imagenes y hay que traer el app config para armar la rl con el puerto y el host

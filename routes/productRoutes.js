@@ -7,13 +7,13 @@ const upload = require('../library/storage')
 
 router.get("/products", getAllProducts)
 
-router.get("/products/:id",getProduct)
+router.get("/products/:_id",getProduct)
 
 router.post("/products",upload.single('urlImagen'),addProduct)
 
-router.put ("/product/:id", updateProduct)
+router.put ("/product/:_id", updateProduct)
 
-router.delete("/product/:id", deleteProduct)
+router.delete("/product/:_id", deleteProduct)
 
 module.exports=router;
 

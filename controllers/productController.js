@@ -18,7 +18,7 @@ const getAllProducts= async(req, res)=>{
             res.status(200).send({
                 products,
                 statusCode:200,
-                message: "Prodcuto encontrado"
+                message: "Producto encontrado"
             })
         // }
     }
@@ -36,7 +36,7 @@ const getProduct =async (req,res)=>{
     const {id}= req.params;
 
 try{
-    if(!mongoose.inValidObjectId(id)){
+    if(!mongoose.isValidObjectId(_id)){
         res.status(400).json({
             statusCode:400,
             message: "Id invalido"
@@ -47,20 +47,20 @@ try{
        if (!product) {
             res.status(404).json({
                 statusCode:404,
-                messege: "Producto no encontrado"
+                message: "Producto no encontrado"
             })
         } else {
             res.status(200).json({
                 statusCode:200,
-                messege: "Producto encontrado"
+                message: "Producto encontrado"
             })
         }
     }
     catch (error){
         res.status(500).json({
             statusCode:500,
-            messege: "Error al buscar producto",
-            error: error.messege,
+            message: "Error al buscar producto",
+            error: error.message,
         })
     }
 
@@ -70,7 +70,7 @@ try{
 const addProduct=async(req,res)=>{
     
     
-    const{nombre, categoria, precio, id, urlImagen, descripcion, portada, talle, color, stock }=req.body //del formulario de registro (req.body) traeme name,lastname,email,password, es decir tomo esos datos
+    const{nombre, categoria, precio, urlImagen, descripcion, portada, talle, color, stock}=req.body //del formulario de registro (req.body) traeme name,lastname,email,password, es decir tomo esos datos
     try{
         // if (!product){
         //     res.status(400).json({
@@ -120,63 +120,63 @@ const updateProduct= async(req,res)=>{
     const {id}= req.params;
 
 try{
-    if(!mongoose.inValidObjectId(id)){
+    if(!mongoose.inValidObjectId(_id)){
         res.status(400).json({
             statusCode:400,
-            messege: "Id invalido"
+            message: "Id invalido"
         })
     } 
-        const product =await Product.findIdAndUpdate(id,req.body,{new:true});
+        const product =await Product.findByIdAndUpdate(id,req.body,{new:true});
         if (!product) {
             res.status(404).json({
                 statusCode:404,
-                messege: "Producto no encontrado"
+                message: "Producto no encontrado"
             })
         } else {
             res.status(200).json({
                 statusCode:200,
-                messege: "Producto actualizado"
+                message: "Producto actualizado"
             })
         }
     }
     catch (error){
         res.status(500).json({
             statusCode:500,
-            messege: "Error al actualizar producto",
-            error: error.messege,
+            message: "Error al actualizar producto",
+            error: error.message,
         })
     }
 
 }
 
 const deleteProduct=async(req,res)=>{
-    const {id}= req.params;
+    const {_id}= req.params;
 
 try{
-    if(!mongoose.inValidObjectId(id)){
-        res.status(400).json({
-            statusCode:400,
-            messege: "Id invalido"
-        })
-    } 
-        const product =await Product.findIdAndDelete(id);
+    // if(!mongoose.isValidObjectId(_id)){
+    //     res.status(400).json({
+    //         statusCode:400,
+    //         message: "Id invalido"
+    //     })
+    // } 
+        const product =await Product.findByIdAndDelete(_id);
         if (!product) {
             res.status(404).json({
                 statusCode:404,
-                messege: "Producto no encontrado"
+                message: "Producto no encontrado"
             })
         } else {
             res.status(200).json({
                 statusCode:200,
-                messege: "Producto eliminado"
+                message: "Producto eliminado"
             })
         }
     }
     catch (error){
         res.status(500).json({
             statusCode:500,
-            messege: "Error al eliminar producto",
-            error: error.messege
+            message: "Error al eliminar producto",
+            error: error.message
         })
     }
 }
