@@ -11,7 +11,7 @@ const schemaPlan = new schema({
     idPlan: String,
     nombrePlan: String,
     description: String,
-    precio: String
+    precio: String,
 })
 
 const ModeloPlan = mongoose.model('plan', schemaPlan);
