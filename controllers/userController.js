@@ -7,9 +7,12 @@ const User = require("../models/userSchema");
 // traigo las funciones para encriptar la conraseña
 const {encryptPassword, comparePassword} = require("../utils/passwordEncripter")
 
-const { JsonWebTokenError } = require("jsonwebtoken")
+const { JsonWebTokenError, sign} = require("jsonwebtoken")
+const jwt = require('jsonwebtoken');
 const bcryptjs = require('bcryptjs')
 require('dotenv').config()
+
+
 // primero nos traemos todos los usuarios desde la base de datos
 const getAllusers = async (req, res) => {
   try {
@@ -88,7 +91,7 @@ const registerUser = async (req,res) => {
     // de la pag de jwt saco los parametros q tengo q poner en el token
     // con la secret key q definimos genero el token
     // el token sirve para mantener la sesion iniciada mientras se esta en uso, dsp de un tiempo de inactividad se cierra
-    // const token = jwt.sign({email:email}, secret, {expiresIn: '1h'})
+    const token = await jwt.sign({email:email}, secret, {expiresIn: '1h'})
     try{
         // pregunto si el nuevo usuario es igual a alguno q ya exista en la base de datos
         // if(user) {
@@ -104,9 +107,9 @@ const registerUser = async (req,res) => {
             name,
             lastname,
             email,
-            password,
+            password: await encryptPassword(password),
             // token para confirmar el email
-            // confirmacionToken: token,
+            confirmacionToken: token,
         });
         // ahora guardo mi nuevo usuario
         const user = await newUser.save();
@@ -141,21 +144,22 @@ const loginUser = async (req,res) => {
 
         // verifico q el password sea el mismo q de la base de datos (q esta encriptado), por eso uso la funcion de comparar q hice en la encrptacion
         // tengo como parametro el password q ingreso el ususario al formulario de login y el password encriptado q tengo guardado en mi base de datos
-        // const verificacionPassword = comparePassword(password, user.password); //esto retorna un booleano
+        const verificacionPassword = comparePassword(password, user.password); //esto retorna un booleano
         
-        // if (!result) {
-        //     res.status(401).json({
-        //       statusCode: 401,
-        //       message: "Contraseña incorrecta",
-        //     });
-        //   }
-        //   const secret = process.env.SECRET_KEY;
-        //   const token = jwt.sign({ email: email }, secret, { expiresIn: "1h" });
+        if (!verificacionPassword) {
+            res.status(401).json({
+              statusCode: 401,
+              message: "Contraseña incorrecta",
+            });
+          }
+          const secret = process.env.SECRET_KEY;
+          const token = jwt.sign({ email: email }, secret, { expiresIn: "1h" });
           res.status(200).json({
             statusCode: 200,
             message: "Usuario logeado",
-            // token: token,
+            token: token,
           });
+          
     }
  
     catch (error) {
