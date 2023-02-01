@@ -159,7 +159,7 @@ const loginUser = async (req,res) => {
             message: "Usuario logeado",
             token: token,
           });
-          
+
     }
  
     catch (error) {
@@ -190,7 +190,7 @@ const logout = async (req, res) => {
 const updateUser = async (req, res) => {
     const { id } = req.params;
     try {
-      if (!mongoose.inValidObjectId(id)) { //primero vemos si el id es valido
+      if (!mongoose.isValidObjectId(id)) { //primero vemos si el id es valido
         res.status(400).json({
           statusCode: 400,
           message: "Id invalido",
