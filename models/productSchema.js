@@ -20,11 +20,6 @@ const productSchema= new mongoose.Schema({
         
     },
 
-    // id:{
-    //     type: Number,
-    //     required: true
-        
-    // },
 
     urlImagen:{
         type: String,
@@ -73,7 +68,7 @@ const productSchema= new mongoose.Schema({
     // }
 })
 
-productSchema.methods.setImgUrl=function setImgUrl(filename){ //hago un metodo es decir una funcion para cargar las imagenes y hay que traer el app config para armar la rl con el puerto y el host
+productSchema.methods.setImgUrl=function setImgUrl(filename){ //hago un metodo es decir una funcion para cargar las imagenes y hay que traer el app config para armar la url con el puerto y el host
         const {host,port}=appConfig;
         this.urlImagen=`${host}:${port}/public/${filename}` //haciendo referencia urlImagene(this) le seteamos el url. se pone el public porque eso es lo que ve el usuario
 }

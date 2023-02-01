@@ -7,7 +7,7 @@ const upload = require('../library/storage')
 
 router.get("/products", getAllProducts)
 
-router.get("/products/:_id",getProduct)
+router.get("/product/:_id",getProduct)
 
 router.post("/products",upload.single('urlImagen'),addProduct)
 

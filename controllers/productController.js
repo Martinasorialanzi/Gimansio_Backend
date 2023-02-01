@@ -33,16 +33,16 @@ const getAllProducts= async(req, res)=>{
 
 //una vez que ya traje todos los usuarios necesito tarer un usuario unico par que se pueda logear el usurio o hacer algun filtro por usuario 
 const getProduct =async (req,res)=>{
-    const {id}= req.params;
+    const {_id}= req.params;
 
 try{
-    if(!mongoose.isValidObjectId(_id)){
-        res.status(400).json({
-            statusCode:400,
-            message: "Id invalido"
-        })
-    } 
-        const product =await Product.find()
+    // if(!mongoose.isValidObjectId(_id)){
+    //     res.status(400).json({
+    //         statusCode:400,
+    //         message: "Id invalido"
+    //     })
+    // } 
+        const product =await Product.findById({_id})
 
        if (!product) {
             res.status(404).json({
@@ -51,6 +51,7 @@ try{
             })
         } else {
             res.status(200).json({
+                product,
                 statusCode:200,
                 message: "Producto encontrado"
             })
@@ -117,17 +118,18 @@ const addProduct=async(req,res)=>{
 
 
 const updateProduct= async(req,res)=>{
-    const {id}= req.params;
-
+    const {_id}= req.params;
+    const paramsToUpdate={...req.body}
 try{
-    if(!mongoose.inValidObjectId(_id)){
+    if(!mongoose.isValidObjectId(_id)){
         res.status(400).json({
             statusCode:400,
             message: "Id invalido"
         })
     } 
-        const product =await Product.findByIdAndUpdate(id,req.body,{new:true});
-        if (!product) {
+        const updateProduct =await Product.findByIdAndUpdate(_id,paramsToUpdate);
+   
+        if (!updateProduct) {
             res.status(404).json({
                 statusCode:404,
                 message: "Producto no encontrado"
@@ -135,7 +137,8 @@ try{
         } else {
             res.status(200).json({
                 statusCode:200,
-                message: "Producto actualizado"
+                message: "Producto actualizado",
+                updateProduct
             })
         }
     }
