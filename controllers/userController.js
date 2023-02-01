@@ -23,9 +23,9 @@ const getAllusers = async (req, res) => {
       });
     }
     // si me da un 22 (exito) mando un json conmsje usuarios encontrados
-    res.status(200).jason({
+    res.status(200).json({
       statusCode: 200,
-      message: "Usuarios encontrados",
+      message: "Usuarios encontrados", users
     });
   } catch (error) {
     // y si hay u  try, hay un catch q es para cuando el codigo de error es 500, es decir q es un error de sistema
@@ -60,7 +60,7 @@ const getUser = async (res, req) => {
             });
           }
           // si me da un 22 (exito) mando un json conmsje usuarios encontrados
-          res.status(200).jason({
+          res.status(200).json({
             statusCode: 200,
             message: "Usuarios encontrados",
           });
@@ -142,19 +142,19 @@ const loginUser = async (req,res) => {
         // verifico q el password sea el mismo q de la base de datos (q esta encriptado), por eso uso la funcion de comparar q hice en la encrptacion
         // tengo como parametro el password q ingreso el ususario al formulario de login y el password encriptado q tengo guardado en mi base de datos
         // const verificacionPassword = comparePassword(password, user.password); //esto retorna un booleano
-        const result = bcryptjs.compareSync(password, user.password)
-        if (!result) {
-            res.status(401).json({
-              statusCode: 401,
-              message: "Contraseña incorrecta",
-            });
-          }
-          const secret = process.env.SECRET_KEY;
-          const token = jwt.sign({ email: email }, secret, { expiresIn: "1h" });
+        
+        // if (!result) {
+        //     res.status(401).json({
+        //       statusCode: 401,
+        //       message: "Contraseña incorrecta",
+        //     });
+        //   }
+        //   const secret = process.env.SECRET_KEY;
+        //   const token = jwt.sign({ email: email }, secret, { expiresIn: "1h" });
           res.status(200).json({
             statusCode: 200,
             message: "Usuario logeado",
-            token: token,
+            // token: token,
           });
     }
  
