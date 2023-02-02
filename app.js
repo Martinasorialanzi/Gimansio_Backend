@@ -26,7 +26,7 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use(cors(corsOptions)) // Use this after the variable declaration
+// app.use(cors(corsOptions)) // Use this after the variable declaration
 
 
 app.use(bodyParser.urlencoded({extended:'true'})) //esto lo que hace es parsear todas las respuestas que tenemos
