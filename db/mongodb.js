@@ -1,5 +1,5 @@
 const mongoose = require(`mongoose`)
-const {dbConfig}=require(`../config`)
+const {dbConfig} = require(`../config`)
 mongoose.set(`strictQuery`,true); //para que no se puedan hacer consultas con campos que no existen en el modelo.
 //configuracion base de datos
 
