@@ -29,8 +29,8 @@ app.use(bodyParser.json()); //y si llega a venir una respuesta en JSON la vamos 
 app.use(`/v1`,productRoutes)  //poner nombre de la version de la api entonces el quedearia http://localhost:8080/v1/productos
 app.use(`/v1`,userRoutes)
 
-app.use(`/v1`, routesUsuario)  //poner nombre de la version de la api entonces el quedearia http://localhost:8080/v1/productos
-app.use(`/v1`, routesPlanes)
+app.use(`https://gimansio-backend-4phx-pbjp4i5n9-martinasorialanzi.vercel.app/v1`, routesUsuario)  //poner nombre de la version de la api entonces el quedearia http://localhost:8080/v1/productos
+app.use(`https://gimansio-backend-4phx-pbjp4i5n9-martinasorialanzi.vercel.app/v1`, routesPlanes)
 
 
 app.get("/", (req, res) => {
