@@ -71,7 +71,7 @@ try{
 const addProduct=async(req,res)=>{
     
     
-    const{nombre, categoria, precio, urlImagen, descripcion, portada, talle, color, stock}=req.body //del formulario de registro (req.body) traeme name,lastname,email,password, es decir tomo esos datos
+    const{nombre, categoria, precio, imagen, descripcion, portada, talle, color, stock}=req.body //del formulario de registro (req.body) traeme name,lastname,email,password, es decir tomo esos datos
     try{
         // if (!product){
         //     res.status(400).json({
@@ -85,7 +85,7 @@ const addProduct=async(req,res)=>{
             nombre, 
             categoria, 
             precio, 
-            urlImagen, 
+            imagen, 
             descripcion, 
             portada, 
             talle, 

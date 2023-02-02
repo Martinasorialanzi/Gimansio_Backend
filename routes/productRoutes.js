@@ -9,7 +9,7 @@ router.get("/products", getAllProducts)
 
 router.get("/product/:_id",getProduct)
 
-router.post("/products",upload.single('urlImagen'),addProduct)
+router.post("/products",upload.single('fileInput'),addProduct)
 
 router.put ("/product/:_id", updateProduct)
 
