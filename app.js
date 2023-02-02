@@ -11,6 +11,7 @@ const cors = require('cors');
 
 const app=express(); //OK
 
+<<<<<<< HEAD
 app.use(cors(
     config.application.cors.server
 ));
@@ -20,8 +21,17 @@ app.use(cors(
 //    credentials:true,            //access-control-allow-credentials:true
 //    optionSuccessStatus:200,
 // }
+=======
 
-// app.use(cors(corsOptions)) // Use this after the variable declaration
+const cors=require("cors");
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+>>>>>>> 5b97c870f442a444fe770138606aab08356a10a6
+
+app.use(cors(corsOptions)) // Use this after the variable declaration
 
 
 app.use(bodyParser.urlencoded({extended:'true'})) //esto lo que hace es parsear todas las respuestas que tenemos
