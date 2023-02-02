@@ -7,21 +7,17 @@ const productRoutes= require(`./routes/productRoutes`)
 const routesUsuario = require('./routes/usuario')//OK
 const routesPlanes = require('./routes/planes')//OK
 const userRoutes = require('./routes/userRoutes')
-const cors = require('cors');
+
 
 const app=express(); //OK
 
-<<<<<<< HEAD
-app.use(cors(
-    config.application.cors.server
-));
+
 // const cors=require("cors");
 // const corsOptions ={
 //    origin:'*', 
 //    credentials:true,            //access-control-allow-credentials:true
 //    optionSuccessStatus:200,
 // }
-=======
 
 const cors=require("cors");
 const corsOptions ={
@@ -29,7 +25,6 @@ const corsOptions ={
    credentials:true,            //access-control-allow-credentials:true
    optionSuccessStatus:200,
 }
->>>>>>> 5b97c870f442a444fe770138606aab08356a10a6
 
 app.use(cors(corsOptions)) // Use this after the variable declaration
 
@@ -42,8 +37,8 @@ app.use(bodyParser.json()); //y si llega a venir una respuesta en JSON la vamos 
 app.use(`/v1`,productRoutes)  //poner nombre de la version de la api entonces el quedearia http://localhost:8080/v1/productos
 app.use(`/v1`,userRoutes)
 
-app.use(`https://gimansio-backend-4phx-pbjp4i5n9-martinasorialanzi.vercel.app/v1`, routesUsuario)  //poner nombre de la version de la api entonces el quedearia http://localhost:8080/v1/productos
-app.use(`https://gimansio-backend-4phx-pbjp4i5n9-martinasorialanzi.vercel.app/v1`, routesPlanes)
+app.use(`/v1`, routesUsuario)  //poner nombre de la version de la api entonces el quedearia http://localhost:8080/v1/productos
+app.use(`/v1`, routesPlanes)
 
 
 app.get("/", (req, res) => {
