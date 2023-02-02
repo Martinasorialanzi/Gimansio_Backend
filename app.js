@@ -7,10 +7,13 @@ const productRoutes= require(`./routes/productRoutes`)
 const routesUsuario = require('./routes/usuario')//OK
 const routesPlanes = require('./routes/planes')//OK
 const userRoutes = require('./routes/userRoutes')
+const cors = require('cors');
 
 const app=express(); //OK
 
-
+app.use(cors(
+    config.application.cors.server
+));
 // const cors=require("cors");
 // const corsOptions ={
 //    origin:'*', 
