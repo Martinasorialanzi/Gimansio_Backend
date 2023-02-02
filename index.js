@@ -28,4 +28,4 @@ const initApp=async(appConfig,dbConfig)=>{  //inicamos la base de datos
 
 }
 
-initApp(appConfig,dbConfig); //llamo a l afuncion para que funcione y de esta manera ya tenemos todo configurado. lo que hice fue primero definir las variables generales, despues en config.js configuarar lso puertos del back y la base de datos y despues en mongodb.js conectar hacer la funcion que conecta a la base de datos (con los datos de configDb( de config.js)) para usarla en initApp
+initApp(appConfig, dbConfig); //llamo a l afuncion para que funcione y de esta manera ya tenemos todo configurado. lo que hice fue primero definir las variables generales, despues en config.js configuarar lso puertos del back y la base de datos y despues en mongodb.js conectar hacer la funcion que conecta a la base de datos (con los datos de configDb( de config.js)) para usarla en initApp

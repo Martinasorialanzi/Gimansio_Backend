@@ -33,6 +33,11 @@ app.use(`/v1`, routesUsuario)  //poner nombre de la version de la api entonces e
 app.use(`/v1`, routesPlanes)
 
 
+app.get("/", (req, res) => {
+    res.status(200).send({msg:"Hola Gym"})
+})
+
+
 module.exports=app;
 
 
