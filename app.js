@@ -6,6 +6,8 @@ const express= require(`express`) //con esta libreria lo que hacemos es manejar 
 const productRoutes= require(`./routes/productRoutes`)
 const routesUsuario = require('./routes/usuario')//OK
 const routesPlanes = require('./routes/planes')//OK
+const userRoutes = require('./routes/userRoutes')
+
 const app=express(); //OK
 
 
